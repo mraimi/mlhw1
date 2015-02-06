@@ -1,18 +1,18 @@
 function params = hw1_train1a(X,Y)
-    load('mnist.mat');
+    load('hw1_data.mat');
     pi = zeros(10,1);
     for q=1:length(Y)
             pi((Y(q)+1),1) = pi((Y(q)+1),1) + 1;
     end
     pi = pi/length(Y);
  
-    mu = zeros(10,784);
+    mu = zeros(10,size(X, dim));
     for q=1:length(Y)
             mu((Y(q)+1),:) =  mu((Y(q)+1),:) + X(q,:)/pi((Y(q)+1),1);
     end
     mu = mu/length(Y);
     
-    diff = zeros(60000,784);
+    diff = zeros(length(Y),784);
     sig = zeros(784,784);
     mu_y = zeros(1,784);
     pi_y = zeros(1,1);
@@ -32,9 +32,11 @@ function params = hw1_train1a(X,Y)
     end
     
     for q=1:10
+        params(q,1).pi = params(q,1).pi + pi(q);
+        params(q,1).mu = params(q,1).mu + mu(q,:);
         params(q,1).sigma = params(q,1).sigma/(pi(q,1)*length(Y));
-        params
     end
     
+    %sig_inv = pinv(params(1,1).sigma);
     
 end
