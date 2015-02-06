@@ -12,7 +12,7 @@ function params = hw1_train1a(X,Y)
     end
     mu = mu/length(Y);
     
-    diff = zeros(60000,784);
+    diff = zeros(length(Y),784);
     sig = zeros(784,784);
     mu_y = zeros(1,784);
     pi_y = zeros(1,1);
@@ -35,8 +35,8 @@ function params = hw1_train1a(X,Y)
         params(q,1).pi = params(q,1).pi + pi(q);
         params(q,1).mu = params(q,1).mu + mu(q,:);
         params(q,1).sigma = params(q,1).sigma/(pi(q,1)*length(Y));
-        params(q,1).sigma/(pi(q,1)*length(Y));
     end
     
+    %sig_inv = pinv(params(1,1).sigma);
     
 end
