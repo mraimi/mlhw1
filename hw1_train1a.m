@@ -35,6 +35,7 @@ function params = hw1_train1a(X,Y)
         params(q,1).pi = params(q,1).pi + pi(q);
         params(q,1).mu = params(q,1).mu + mu(q,:);
         params(q,1).sigma = params(q,1).sigma/(pi(q,1)*length(Y));
+        params(q,1).sigma/(pi(q,1)*length(Y));
     end
     
     
