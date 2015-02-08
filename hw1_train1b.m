@@ -29,17 +29,15 @@ function params = hw1_train1b(X,Y)
         diff(q,:) = X(q,:)- mu((Y(q)+1), :);
     end
     
-    for q=1:length(Y)
+    for q=1:class_count
         %params((Y(q)+1),1).sigma = params((Y(q)+1),1).sigma + diff(q, :)'*(diff(q,:));
-        params((Y(q)+1),1).sigma = fixed_sig;
+        params(class_count,1).sigma = fixed_sig;
     end
     
     for q=1:class_count
         params(q,1).pi = params(q,1).pi + pi(q);
         params(q,1).mu = params(q,1).mu + mu(q,:);
-        params(q,1).sigma = params(q,1).sigma/(pi(q,1)*length(Y));
+        %params(q,1).sigma = params(q,1).sigma/(pi(q,1)*length(Y));
     end
-    
-    %sig_inv = pinv(params(1,1).sigma);
     
 end
