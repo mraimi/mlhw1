@@ -1,28 +1,9 @@
-function preds = hw1_test1a(params,test)
-   %diff = zeros(length(Y),size(X,2));
-   class_count = 3;
+function preds = hw1_test1b(params,test)
+   
+   class_count = 10;
    prediction = zeros(10,1);
    preds(length(test), 1) = -1;
    
-%   sigma_y(784,784);
-   
-   %{ ------pre-computing inverse sigma----- %}
-   
-   %inv_sig_y = struct('sigma_y', sigma_y);
-   
-   %inv_sig_container(class_count,1) = inv_sig_y;
-   
- 
-   
-    
-    
-    %{
-    for q=1:length(Y)
-        diff(q,:) = X(q,:)- params(1,1).mu((Y(q)+1), :);
-    end
-    %}
-    
-    
     for i=1:length(test)
         x = test(i,:);
         highest_index = 1;

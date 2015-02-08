@@ -1,3 +1,3 @@
 %load('hw1_data.mat');
 load('mnist.mat');
-error(hw1_test1a(hw1_train1a(data, labels), testdata), testlabels);
+err(hw1_test1b(hw1_train1b(data, labels), testdata), testlabels);

@@ -1,6 +1,8 @@
-function params = hw1_train1a(X,Y)
-    class_count = 3;
+function params = hw1_train1b(X,Y)
+    class_count = 10;
     pi = zeros(class_count,1);
+    fixed_sig = eye(size(X, 2));
+    
     for q=1:length(Y)
             pi((Y(q)+1),1) = pi((Y(q)+1),1) + 1;
     end
@@ -13,10 +15,10 @@ function params = hw1_train1a(X,Y)
     mu = mu/length(Y);
     
     diff = zeros(length(Y),size(X,2));
-    sig = zeros(size(X,2), size(X,2));
+    %sig = zeros(size(X,2), size(X,2));
     mu_y = zeros(1,size(X,2));
     pi_y = zeros(1,1);
-    class = struct('pi', pi_y, 'mu', mu_y, 'sigma', sig);
+    class = struct('pi', pi_y, 'mu', mu_y, 'sigma', fixed_sig);
     params(class_count,1) = class;
 
     for q=1:class_count-1
@@ -28,7 +30,8 @@ function params = hw1_train1a(X,Y)
     end
     
     for q=1:length(Y)
-        params((Y(q)+1),1).sigma = params((Y(q)+1),1).sigma + diff(q, :)'*(diff(q,:));
+        %params((Y(q)+1),1).sigma = params((Y(q)+1),1).sigma + diff(q, :)'*(diff(q,:));
+        params((Y(q)+1),1).sigma = fixed_sig;
     end
     
     for q=1:class_count
