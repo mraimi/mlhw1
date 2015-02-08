@@ -1,6 +1,5 @@
 function params = hw1_train1a(X,Y)
-    load('hw1_data.mat');
-    class_count = 3;
+    class_count = 10;
     pi = zeros(class_count,1);
     for q=1:length(Y)
             pi((Y(q)+1),1) = pi((Y(q)+1),1) + 1;

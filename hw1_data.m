@@ -8,4 +8,4 @@ for k=1:3
 	m = sum(Y==mod(k,3));
 	X(Y==mod(k,3),:) = bsxfun(@plus,stddevs(k)*randn(m,2),means(k,:));
 end
-imagesc(reshape(data(i,:),28,28)');
+
