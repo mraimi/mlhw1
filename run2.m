@@ -1,2 +1,3 @@
 load('mnist.mat')
-hw1_nn(data,labels,testdata)
+%load('myFile.mat')
+hw1_nn(data,labels,testdata, y)
