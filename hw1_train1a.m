@@ -11,19 +11,22 @@ function params = hw1_train1a(X,Y)
      %{ -------------generating pi------------}%
     
     pi = zeros(class_count,1);
-    for q=1:length(Y)
-            pi((Y(q)+1),1) = pi((Y(q)+1),1) + 1;
+    for q=0:class_count-1
+            pi(q+1,1) = sum(Y == q)/size(Y,1);
     end
-    pi = pi/length(Y);
     
     %{ -------------generating pi------------}%
     
+    
+    
     %{ -------------generating mu------------}%
     mu = zeros(class_count,size(X,2));
-    for q=1:length(Y)
-            mu((Y(q)+1),:) =  mu((Y(q)+1),:) + X(q,:)/pi((Y(q)+1),1);
+    for q=0:class_count-1
+         val = (sum(X(Y == q,:)))/(size(Y,1)*pi(q+1,1));
+         mu(q+1,:) = val;
+        %mu((Y(q)+1),:) =  mu((Y(q)+1),:) + X(q,:)/pi((Y(q)+1),1);
     end
-    mu = mu/length(Y);
+    %mu = mu/length(Y);
     
     %{ -------------generating mu------------}%
     
@@ -37,6 +40,9 @@ function params = hw1_train1a(X,Y)
         diff(q,:) = X(q,:)- mu((Y(q)+1), :);
     end
     
+    
+    
+    
     %{ -------------generating sigma------------}%
     
 %     for q=1:length(Y)
@@ -48,6 +54,8 @@ function params = hw1_train1a(X,Y)
     end
     
     %{ -------------generating sigma------------}%
+    
+    
     
     for q=1:class_count
         params(q,1).pi = params(q,1).pi + pi(q);
